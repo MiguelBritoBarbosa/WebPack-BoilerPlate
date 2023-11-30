@@ -1,11 +1,11 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-    mode: "development",
-    entry: "./src/index.js",
+    mode: 'development',
+    entry: './src/main.js',
     output: {
-        path: path.resolve(__dirname, "../src/index.js"),
-        filename: "bundle.js",
+        path: path.resolve(__dirname, 'public', 'assets', 'js'),
+        filename: 'bundle.js',
     },
     module: {
         rules: [
@@ -13,13 +13,17 @@ module.exports = {
                 exclude: /node_modules/,
                 test: /\.js$/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: {
-                        presets: ["@babel/env"],
+                        presets: ['@babel/env'],
                     },
                 },
             },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
         ],
     },
-    devtool: "source-map",
+    devtool: 'source-map',
 };
